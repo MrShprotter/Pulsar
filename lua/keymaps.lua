@@ -1,4 +1,5 @@
 local map = vim.api.nvim_set_keymap
+local lspmap = vim.keymap.set
 local ops = { noremap = true, silent = true }
 
 -- Default
@@ -34,10 +35,3 @@ map('n', '<leader>ff', ':Telescope find_files hidden=true<CR>', ops)
 map('n', '<leader>fg', ':Telescope live_grep<CR>', ops)
 map('n', '<leader>fb', ':Telescope buffers<CR>', ops)
 map('n', '<leader>fn', ':Telescope help_tags<CR>', ops)
-
--- LuaSnip
-vim.cmd("imap <silent><expr> <Tab> luasnip#expand_or_jumpable() ? '<Plug>luasnip-expand-or-jump' : '<Tab>'")
-map('i', '<S-Tab>', '<cmd>lua require("luasnip").jump(-1)<CR>', ops)
-
--- Lsp
-

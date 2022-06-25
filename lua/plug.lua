@@ -2,7 +2,6 @@ require('packer').startup(function()
     use 'wbthomason/packer.nvim'
     use 'ap/vim-css-color'
     use 'lervag/vimtex'
-    use 'sirver/ultisnips'
     use {
         'nvim-lualine/lualine.nvim',
         requires = { 'kyazdani42/nvim-web-devicons', opt = true }
@@ -11,7 +10,6 @@ require('packer').startup(function()
         'nvim-telescope/telescope.nvim',
         requires = { {'nvim-lua/plenary.nvim'} }
     }
-    use 'tc50cal/vim-terminal'
     use 'mattn/emmet-vim'
     use {
         'kyazdani42/nvim-tree.lua',
@@ -36,10 +34,29 @@ require('packer').startup(function()
     use 'numToStr/Comment.nvim'
     use 'L3MON4D3/LuaSnip'
     use 'simrat39/symbols-outline.nvim'
-    
+    use {
+        "folke/todo-comments.nvim",
+        requires = "nvim-lua/plenary.nvim"
+    }
+    use {
+        "folke/trouble.nvim",
+        requires = "kyazdani42/nvim-web-devicons"
+    }
+
     -- Lsp
     use 'neovim/nvim-lspconfig'
     use 'onsails/lspkind-nvim'
     use { 'glepnir/lspsaga.nvim', branch = 'main' }
     use 'williamboman/nvim-lsp-installer'
+    use {
+        'hrsh7th/nvim-cmp',
+        requires = {
+            'hrsh7th/cmp-nvim-lsp',
+            'hrsh7th/cmp-buffer',
+            'hrsh7th/cmp-path',
+            'hrsh7th/cmp-cmdline',
+            'saadparwaiz1/cmp_luasnip'
+        }
+    }
+    use 'onsails/lspkind.nvim'
 end)
