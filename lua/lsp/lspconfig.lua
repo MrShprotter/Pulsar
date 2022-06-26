@@ -1,34 +1,6 @@
 local lspc = require('lspconfig')
 local lsp = vim.lsp
-local handl = lsp.handlers
 local map = vim.keymap.set
-
--- Handlers
-local border = {
-      {"╔", "FloatBorder"},
-      {"═", "FloatBorder"},
-      {"╗", "FloatBorder"},
-      {"║", "FloatBorder"},
-      {"╝", "FloatBorder"},
-      {"═", "FloatBorder"},
-      {"╚", "FloatBorder"},
-      {"║", "FloatBorder"},
-}
-
-local handlers =  {
-  ["textDocument/hover"] =  vim.lsp.with(vim.lsp.handlers.hover, { border = border }),
-  ["textDocument/signatureHelp"] =  vim.lsp.with(vim.lsp.handlers.signature_help, { border = border }),
-  ["textDocument/publishDiagnostics"] = vim.lsp.with(
-  vim.lsp.diagnostic.on_publish_diagnostics,
-  {
-      underline = true,
-      virtual_text = {
-          spacing = 4,
-          prefix = ''
-      }
-  }
-  )
-}
 
 local signs = { Error = " ", Warn = " ", Hint = " ", Info = " " }
 for type, icon in pairs(signs) do
@@ -38,11 +10,8 @@ end
 
 -- Mapping
 local on_attach = function(client, bufnr)
-  -- Enable completion triggered by <c-x><c-o>
   vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
 
-  -- Mappings.
-  -- See `:help vim.lsp.*` for documentation on any of the below functions
   local bufopts = { noremap=true, silent=true, buffer=bufnr }
   map('n', 'gD', vim.lsp.buf.declaration, bufopts)
   map('n', 'gd', vim.lsp.buf.definition, bufopts)
@@ -65,16 +34,65 @@ local on_attach = function(client, bufnr)
   map('n', 'K', ':lua require(\'lspsaga.hover\').render_hover_doc()<CR>', bufopts)
 end
 
+-- Handlers
+local border = {
+    {"╔", "FloatBorder"},
+    {"═", "FloatBorder"},
+    {"╗", "FloatBorder"},
+    {"║", "FloatBorder"},
+    {"╝", "FloatBorder"},
+    {"═", "FloatBorder"},
+    {"╚", "FloatBorder"},
+    {"║", "FloatBorder"},
+}
+
+local handlers =  {
+    ["textDocument/hover"] =  vim.lsp.with(vim.lsp.handlers.hover, { border = border }),
+    ["textDocument/signatureHelp"] =  vim.lsp.with(vim.lsp.handlers.signature_help, { border = border }),
+    ["textDocument/publishDiagnostics"] = vim.lsp.with(
+    vim.lsp.diagnostic.on_publish_diagnostics,
+    {
+        underline = true,
+        virtual_text = {
+            spacing = 4,
+            prefix = ''
+        }
+    })
+}
+
 local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
 
 lspc.pyright.setup {
     on_attach = on_attach,
     handlers = handlers,
-    capabilities = capabilities
+    capabilities = capabilities,
+    filetypes = {
+        "python",
+    }
 }
 
 lspc.texlab.setup {
     on_attach = on_attach,
     handlers = handlers,
-    capabilities = capabilities
+    capabilities = capabilities,
+    filetypes = {
+        'tex',
+        'latex'
+    }
+}
+
+lspc.sumneko_lua.setup {
+    on_attach = on_attach,
+    handlers = handlers,
+    capabilities = capabilities,
+    settings = {
+        Lua = {
+            diagnostics = {
+                globals = { 'vim', 'use' }
+            }
+        }
+    },
+    filetypes = {
+        'lua'
+    }
 }

@@ -1,5 +1,6 @@
 require('packer').startup(function()
     use 'wbthomason/packer.nvim'
+    use 'windwp/nvim-autopairs'
     use 'ap/vim-css-color'
     use 'lervag/vimtex'
     use {
@@ -8,7 +9,7 @@ require('packer').startup(function()
     }
     use {
         'nvim-telescope/telescope.nvim',
-        requires = { {'nvim-lua/plenary.nvim'} }
+        requires = { 'nvim-lua/plenary.nvim' }
     }
     use 'mattn/emmet-vim'
     use {
@@ -19,8 +20,6 @@ require('packer').startup(function()
         tag = 'nightly'
     }
     use { 'mg979/vim-visual-multi', branch = 'master' }
-    use { 'nvim-treesitter/nvim-treesitter', run = ':TSEnable highlight' }
-    use 'cohama/lexima.vim'
     use 'fisadev/vim-isort'
     use {
         "startup-nvim/startup.nvim",
@@ -42,6 +41,7 @@ require('packer').startup(function()
         "folke/trouble.nvim",
         requires = "kyazdani42/nvim-web-devicons"
     }
+    use 'nvim-lua/popup.nvim'
 
     -- Lsp
     use 'neovim/nvim-lspconfig'
@@ -59,4 +59,5 @@ require('packer').startup(function()
         }
     }
     use 'onsails/lspkind.nvim'
+    use { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate' }
 end)
