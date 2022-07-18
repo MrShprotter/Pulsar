@@ -189,6 +189,11 @@ _G.packer_plugins = {
     path = "/home/djamal/.local/share/nvim/site/pack/packer/start/popup.nvim",
     url = "https://github.com/nvim-lua/popup.nvim"
   },
+  ["py_lsp.nvim"] = {
+    loaded = true,
+    path = "/home/djamal/.local/share/nvim/site/pack/packer/start/py_lsp.nvim",
+    url = "https://github.com/HallerPatrick/py_lsp.nvim"
+  },
   ["startup.nvim"] = {
     config = { "\27LJ\2\nI\0\0\3\0\4\0\a6\0\0\0'\2\1\0B\0\2\0029\0\2\0005\2\3\0B\0\2\1K\0\1\0\1\0\1\ntheme\vpulsar\nsetup\fstartup\frequire\0" },
     loaded = true,
@@ -224,11 +229,6 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/djamal/.local/share/nvim/site/pack/packer/start/vim-isort",
     url = "https://github.com/fisadev/vim-isort"
-  },
-  ["vim-visual-multi"] = {
-    loaded = true,
-    path = "/home/djamal/.local/share/nvim/site/pack/packer/start/vim-visual-multi",
-    url = "https://github.com/mg979/vim-visual-multi"
   },
   vimtex = {
     loaded = true,

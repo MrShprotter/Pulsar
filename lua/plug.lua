@@ -19,7 +19,6 @@ require('packer').startup(function()
         },
         tag = 'nightly'
     }
-    use { 'mg979/vim-visual-multi', branch = 'master' }
     use 'fisadev/vim-isort'
     use {
         "startup-nvim/startup.nvim",
@@ -28,7 +27,7 @@ require('packer').startup(function()
             require"startup".setup({theme = "pulsar"})
         end
     }
-    use 'LunarVim/onedarker.nvim'
+    use { 'LunarVim/onedarker.nvim', commit = 'b00dd21' }
     use {'akinsho/bufferline.nvim', tag = "v2.*", requires = 'kyazdani42/nvim-web-devicons'}
     use 'numToStr/Comment.nvim'
     use 'L3MON4D3/LuaSnip'
@@ -60,4 +59,5 @@ require('packer').startup(function()
     }
     use 'onsails/lspkind.nvim'
     use { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate' }
+    use 'HallerPatrick/py_lsp.nvim'
 end)

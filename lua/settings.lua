@@ -40,3 +40,5 @@ require'lspsaga'.init_lsp_saga {
 }
 
 require'todo-comments'.setup {}
+
+require'py_lsp'.setup {}
